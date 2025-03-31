@@ -4,6 +4,7 @@ import App from "./App.jsx";
 import Login from "./components/login.jsx";
 import Register from "./components/register.jsx";
 import Homepage from "./views/homepage.jsx";
+import Mainview from "./views/mainview.jsx";
 import ProtectedRoute from "./middleware/protectedRoute.jsx";
 import Logout from "./components/logout.jsx";
 
@@ -25,6 +26,11 @@ export const router = createBrowserRouter([
         element: <Register />,
       },
       {
+        path: "mainview",
+        element: <Mainview />,
+      },
+      { index: true, element: <Navigate to="/mainview" /> }, // Redirigir a mainview por defecto
+      {
         element: <ProtectedRoute />, // middleware aquí
         children: [
           {
@@ -32,10 +38,6 @@ export const router = createBrowserRouter([
             element: <Homepage />,
           },
         ],
-      },
-      {
-        index: true,
-        element: <Navigate to="/homepage" />,
       },
     ],
   },

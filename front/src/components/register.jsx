@@ -50,6 +50,9 @@ export default function Register() {
       localStorage.setItem("token", token);
       setError("");
       window.dispatchEvent(new Event("register"));
+      alert("Usuario registrado con éxito, vamos al login...");
+      setTimeout(() => {}, 1000);
+      window.dispatchEvent(new Event("login"));
       navigate("/login");
     } catch (err) {
       console.error(err.code, err.message);

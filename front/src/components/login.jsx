@@ -34,8 +34,12 @@ export default function Login() {
       const token = await userCredential.user.getIdToken();
       localStorage.setItem("token", token);
       setError("");
-      window.dispatchEvent(new Event("login")); // Notificar a otros componentes
-      navigate("/homepage"); 
+      window.dispatchEvent(new Event("login"));
+      setTimeout(() => {
+        window.dispatchEvent(new Event("login"));
+      }, 1000);
+      alert("Bienvenido, vamos a la página principal...");
+      navigate("/homepage");
     } catch (err) {
       setError("Credenciales incorrectas");
     }
@@ -70,6 +74,18 @@ export default function Login() {
         >
           Ingresar
         </button>
+        <div>
+          <p>¿Aun no tienes cuenta?</p>
+          <button
+            onClick={() => {
+              window.dispatchEvent(new Event("register"));
+              navigate("/register");
+            }}
+            style={{ padding: "10px", background: "#3b82f6", color: "white" }}
+          >
+            Registrarse
+          </button>
+        </div>
         {error && <p style={{ color: "red" }}>{error}</p>}
       </form>
     </div>

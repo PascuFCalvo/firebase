@@ -3,7 +3,6 @@ import { Outlet, Link, useNavigate } from "react-router-dom";
 
 export default function App() {
   const [loggedIn, setLoggedIn] = useState(false);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -37,7 +36,7 @@ export default function App() {
       >
         <h1>Mi Aplicación</h1>
         <nav>
-          <Link to="/homepage" style={{ color: "white", marginRight: "1rem" }}>
+          <Link to="/mainview" style={{ color: "white", marginRight: "1rem" }}>
             Home
           </Link>
           {loggedIn ? (
