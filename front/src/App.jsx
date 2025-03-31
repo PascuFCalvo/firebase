@@ -49,6 +49,9 @@ export default function App() {
               Login
             </Link>
           )}
+          <Link to="/register" style={{ color: "white", marginLeft: "1rem" }}>
+            Register
+          </Link>
         </nav>
       </header>
 
