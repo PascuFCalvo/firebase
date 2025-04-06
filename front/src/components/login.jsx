@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useGlobalStore } from "../zustand/globalState";
-
+import { showLoginFailed, showLoginSuccess } from "./toast";
 // Configuración Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyBuynxBdyLhwnK0QxKfaHq1w9T5bcg5NhU",
@@ -50,9 +50,10 @@ export default function Login() {
       console.log("Login exitoso:", setIsLoggedIn, setUser);
 
       window.dispatchEvent(new Event("login"));
-      alert("Bienvenido, vamos a la página principal...");
+      showLoginSuccess(); // Mostrar el toast de éxito
       navigate("/homepage");
     } catch (err) {
+      showLoginFailed(); // Mostrar el toast de error
       console.error("Error en login:", err);
       setError("Credenciales incorrectas");
     }

@@ -1,20 +1,26 @@
+import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useGlobalStore } from "../zustand/globalState";
+import { showLogoutSuccess } from "./toast";
 
 export default function Logout() {
   const setIsLoggedIn = useGlobalStore((state) => state.setIsLoggedIn);
   const setUser = useGlobalStore((state) => state.setUser);
-
   const navigate = useNavigate();
-  alert("Has cerrado sesión correctamente. Vamos a la página principal...");
-  setTimeout(() => {
+  const hasLoggedOut = useRef(false); // 👈 bandera
+
+  useEffect(() => {
+    if (hasLoggedOut.current) return;
+    hasLoggedOut.current = true;
+
+    showLogoutSuccess();
     localStorage.removeItem("token");
     setIsLoggedIn(false);
     setUser(null);
-    console.log("Logout exitoso:", setIsLoggedIn, setUser);
+    console.log("Logout exitoso");
     window.dispatchEvent(new Event("logout"));
     navigate("/mainview", { replace: true });
-  }, 1000);
+  }, [setIsLoggedIn, setUser, navigate]);
 
-  return null; // This component doesn't need to render anything
+  return null;
 }
