@@ -61,19 +61,18 @@ export default function Register() {
   };
 
   return (
-    <div style={{ maxWidth: 400, margin: "50px auto" }}>
-      <h2>Registrar</h2>
-      <form
-        onSubmit={handleRegister}
-        style={{ display: "flex", flexDirection: "column", gap: "10px" }}
-      >
+    <div className="max-w-md mx-auto mt-12 p-6 bg-background dark:bg-gray-800 shadow-md rounded-lg">
+      <h2 className="text-2xl font-semibold mb-6 text-center text-primary dark:text-white">
+        Registrar
+      </h2>
+      <form onSubmit={handleRegister} className="flex flex-col gap-4">
         <input
           type="email"
           placeholder="Correo electrónico"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-          style={{ padding: "8px" }}
+          className="p-3 border border-border dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-primary dark:bg-gray-700 dark:text-white"
         />
         <input
           type="password"
@@ -81,10 +80,15 @@ export default function Register() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
-          style={{ padding: "8px" }}
+          className="p-3 border border-border dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-primary dark:bg-gray-700 dark:text-white"
         />
-        {error && <p style={{ color: "red" }}>{error}</p>}
-        <button type="submit" style={{ padding: "10px" }}>
+        {error && (
+          <p className="text-sm text-error text-center mt-2">{error}</p>
+        )}
+        <button
+          type="submit"
+          className="p-3 bg-primary text-white rounded-md hover:bg-button-hover transition"
+        >
           Registrar
         </button>
       </form>

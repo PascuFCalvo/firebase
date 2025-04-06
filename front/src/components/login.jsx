@@ -4,6 +4,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useGlobalStore } from "../zustand/globalState";
 import { showLoginFailed, showLoginSuccess } from "./toast";
+
 // Configuración Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyBuynxBdyLhwnK0QxKfaHq1w9T5bcg5NhU",
@@ -24,7 +25,7 @@ export default function Login() {
 
   const setIsLoggedIn = useGlobalStore((state) => state.setIsLoggedIn);
   const setUser = useGlobalStore((state) => state.setUser);
-  const isLoggedIn = useGlobalStore((state) => state.isLoggedIn); // solo si querés mostrarlo o depurarlo
+  const isLoggedIn = useGlobalStore((state) => state.isLoggedIn);
 
   const navigate = useNavigate();
 
@@ -47,32 +48,29 @@ export default function Login() {
         uid: userCredential.user.uid,
       });
 
-      console.log("Login exitoso:", setIsLoggedIn, setUser);
-
       window.dispatchEvent(new Event("login"));
-      showLoginSuccess(); // Mostrar el toast de éxito
+      showLoginSuccess();
       navigate("/homepage");
     } catch (err) {
-      showLoginFailed(); // Mostrar el toast de error
+      showLoginFailed();
       console.error("Error en login:", err);
       setError("Credenciales incorrectas");
     }
   };
 
   return (
-    <div style={{ maxWidth: 400, margin: "50px auto" }}>
-      <h2>Iniciar sesión</h2>
-      <form
-        onSubmit={handleLogin}
-        style={{ display: "flex", flexDirection: "column", gap: "10px" }}
-      >
+    <div className="max-w-md mx-auto mt-12 p-6 bg-background dark:bg-gray-800 shadow-md rounded-lg">
+      <h2 className="text-2xl font-semibold mb-6 text-center text-primary dark:text-white">
+        Iniciar sesión
+      </h2>
+      <form onSubmit={handleLogin} className="flex flex-col gap-4">
         <input
           type="email"
           placeholder="Correo electrónico"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-          style={{ padding: "8px" }}
+          className="p-3 border border-border dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-primary dark:bg-gray-700 dark:text-white"
         />
         <input
           type="password"
@@ -80,28 +78,32 @@ export default function Login() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
-          style={{ padding: "8px" }}
+          className="p-3 border border-border dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-primary dark:bg-gray-700 dark:text-white"
         />
         <button
           type="submit"
-          style={{ padding: "10px", background: "#3b82f6", color: "white" }}
+          className="p-3 bg-primary text-white rounded-md hover:bg-button-hover transition"
         >
           Ingresar
         </button>
-        <div>
-          <p>¿Aun no tienes cuenta?</p>
+        <div className="text-center">
+          <p className="text-sm text-text dark:text-gray-300">
+            ¿Aún no tienes cuenta?
+          </p>
           <button
             type="button"
             onClick={() => {
               window.dispatchEvent(new Event("register"));
               navigate("/register");
             }}
-            style={{ padding: "10px", background: "#3b82f6", color: "white" }}
+            className="mt-2 p-3 bg-primary text-white rounded-md hover:bg-button-hover transition"
           >
             Registrarse
           </button>
         </div>
-        {error && <p style={{ color: "red" }}>{error}</p>}
+        {error && (
+          <p className="text-sm text-error text-center mt-2">{error}</p>
+        )}
       </form>
     </div>
   );

@@ -1,0 +1,9 @@
+/* src/index.css */
+
+/* Importar global.css donde están las variables de color */
+@import './styles/global.css';
+
+/* Importar Tailwind */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

@@ -9,6 +9,14 @@ export const showLoginSuccess = () => {
       label: "Cerrar",
       onClick: () => toast.dismiss(),
     },
+    // Estilos personalizados
+    style: {
+      backgroundColor: "#3B82F6",
+      color: "#fff",
+      borderRadius: "8px",
+      padding: "16px",
+      boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
+    },
   });
 };
 
@@ -21,11 +29,17 @@ export const showLoginFailed = () => {
       label: "Cerrar",
       onClick: () => toast.dismiss(),
     },
+    style: {
+      backgroundColor: "#EF4444",
+      color: "#fff",
+      borderRadius: "8px",
+      padding: "16px",
+      boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
+    },
   });
 };
 
 // Toast de desconexión exitoso
-
 export const showLogoutSuccess = () => {
   toast.success("Logout exitoso", {
     description: "Has cerrado sesión correctamente",
@@ -34,7 +48,12 @@ export const showLogoutSuccess = () => {
       label: "Cerrar",
       onClick: () => toast.dismiss(),
     },
+    style: {
+      backgroundColor: "#10B981",
+      color: "#fff",
+      borderRadius: "8px",
+      padding: "16px",
+      boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
+    },
   });
-}
-
-
+};

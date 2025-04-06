@@ -1,0 +1,76 @@
+/* src/styles/global.css */
+
+/* Variables globales de color */
+:root {
+  --color-background: #F5F5F4; /* Fondo amarillo cálido */
+  --color-text: #463848; /* Texto oscuro */
+  --color-primary: #ff8d00; /* Verde primario */
+  --color-secondary: #ff8d00; /* Amarillo suave */
+  --color-button-hover: #ff432e; /* Hover para botones */
+  --color-border: #463848; /* Madera oscura para bordes */
+  --color-accent: #f1a7ff; /* Rosa pastel para acentos */
+  --navbar-background: #E7E0D3; /* Fondo para la navbar */
+  --footer-background: #E7E0D3; /* Fondo para el footer */
+}
+
+/* Modo oscuro */
+.dark {
+  --color-background: #1f2937; /* Fondo oscuro */
+  --color-text: #f9fafb; /* Texto claro */
+  --color-primary: #1db406; /* Verde primario */
+  --color-secondary: #ffbb33; /* Amarillo suave */
+  --color-button-hover: #017e0c; /* Hover para botones */
+  --color-border: #3b2f1f; /* Madera oscura para bordes */
+  --color-accent: #f1a7ff; /* Rosa pastel */
+  --navbar-background: #333333; /* Fondo oscuro para navbar */
+  --footer-background: #333333; /* Fondo oscuro para footer */
+}
+
+/* Estilos generales */
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-text);
+}
+
+button {
+  background-color: var(--color-primary);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--color-button-hover);
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--color-secondary);
+}
+
+header {
+  background-color: var(--navbar-background);
+  color: white;
+}
+
+footer {
+  background-color: var(--footer-background);
+  color: white;
+}
+
+/* Añadir sombras suaves y bordes para más contraste */
+.shadow-lg {
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.border {
+  border: 2px solid var(--color-border);
+}
