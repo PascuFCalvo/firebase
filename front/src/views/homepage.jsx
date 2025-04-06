@@ -1,4 +1,6 @@
 import React from "react";
+import EmbedMap from "../components/EmbedMap"; // Asegúrate de que la ruta sea correcta
+import DraggableComponent from "@/components/DraggableComponent";
 
 export default function Homepage() {
   return (
@@ -10,12 +12,8 @@ export default function Homepage() {
         Ya has iniciado sesión correctamente.
       </p>
 
-      {/* Botón de Logout */}
-      <div className="mt-6">
-        <button className="bg-primary text-white py-2 px-4 rounded-lg hover:bg-button-hover transition">
-          Cerrar sesión
-        </button>
-      </div>
+      <EmbedMap />
+      <DraggableComponent />
     </div>
   );
 }

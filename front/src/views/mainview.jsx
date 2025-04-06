@@ -1,3 +1,4 @@
+import DraggableComponent from "@/components/DraggableComponent";
 import React from "react";
 
 export default function Mainview() {
@@ -14,6 +15,7 @@ export default function Mainview() {
           Iniciar sesión
         </button>
       </div>
+
     </div>
   );
 }
