@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { useGlobalStore } from "../zustand/globalState";
 
-// Configuración Firebase (la misma que usaste antes)
+// Configuración Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyBuynxBdyLhwnK0QxKfaHq1w9T5bcg5NhU",
   authDomain: "pascual-b0683.firebaseapp.com",
@@ -21,6 +22,10 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
+  const setIsLoggedIn = useGlobalStore((state) => state.setIsLoggedIn);
+  const setUser = useGlobalStore((state) => state.setUser);
+  const isLoggedIn = useGlobalStore((state) => state.isLoggedIn); // solo si querés mostrarlo o depurarlo
+
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
@@ -32,15 +37,23 @@ export default function Login() {
         password
       );
       const token = await userCredential.user.getIdToken();
+
       localStorage.setItem("token", token);
       setError("");
+
+      setIsLoggedIn(true);
+      setUser({
+        email: userCredential.user.email,
+        uid: userCredential.user.uid,
+      });
+
+      console.log("Login exitoso:", setIsLoggedIn, setUser);
+
       window.dispatchEvent(new Event("login"));
-      setTimeout(() => {
-        window.dispatchEvent(new Event("login"));
-      }, 1000);
       alert("Bienvenido, vamos a la página principal...");
       navigate("/homepage");
     } catch (err) {
+      console.error("Error en login:", err);
       setError("Credenciales incorrectas");
     }
   };
@@ -77,6 +90,7 @@ export default function Login() {
         <div>
           <p>¿Aun no tienes cuenta?</p>
           <button
+            type="button"
             onClick={() => {
               window.dispatchEvent(new Event("register"));
               navigate("/register");
